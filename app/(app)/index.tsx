@@ -6,7 +6,8 @@ import { DIMENSIONS } from "@/constants";
 import { pastelColorOptions, ThemeColors } from "@/constants/Colors";
 import generatePastelColors from "@/utils/generatePastelColors";
 import getGridItemSize from "@/utils/gridUtils";
-import validateNumberInput from "@/utils/validateNumberInput";
+import { validateNumberInputGripGap } from "@/utils/validateNumberInputGripGap";
+import { validateNumberInputGripSize } from "@/utils/validateNumberInputGripSize";
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
@@ -27,7 +28,7 @@ const AppIndex = () => {
   const [widthGridView, setWidthGridView] = useState<number>(0);
 
   useEffect(() => {
-    setColors(generatePastelColors(selectedColor, gridSize * gridSize));
+    setColors(generatePastelColors(selectedColor.color, gridSize * gridSize));
   }, [selectedColor, gridSize]);
 
   /**
@@ -72,7 +73,7 @@ const AppIndex = () => {
           testId="gridSizeInput"
           value={gridSize}
           setValue={(text: string) =>
-            setGridSize(validateNumberInput(text, 1, 100))
+            setGridSize(validateNumberInputGripSize(text, 100))
           }
           containerStyle={{ marginRight: 6 }}
           label="Grid Size"
@@ -82,7 +83,7 @@ const AppIndex = () => {
           testId="gridGapInput"
           value={gridGap}
           setValue={(text: string) =>
-            setGridGap(validateNumberInput(text, 1, 100))
+            setGridGap(validateNumberInputGripGap(text))
           }
           containerStyle={{ marginLeft: 6 }}
           label="Grid Gap"
