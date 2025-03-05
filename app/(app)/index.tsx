@@ -89,7 +89,10 @@ const AppIndex = () => {
           keyboardType="numeric"
         />
       </View>
-      <ColorPicker setSelectedColor={setSelectedColor} />
+      <ColorPicker
+        selectedColor={selectedColor}
+        setSelectedColor={setSelectedColor}
+      />
       <View style={styles.resetContainer}>
         <TouchableOpacity
           testID="resetButton"
@@ -125,13 +128,13 @@ const styles = StyleSheet.create({
   resetContainer: {
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 8,
   },
   resetButton: {
     backgroundColor: "white",
     borderRadius: DIMENSIONS.BORDER_RADIUS,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    marginBottom: 16,
     borderColor: ThemeColors.borderGray,
     borderWidth: 1,
   },
@@ -143,6 +146,7 @@ const styles = StyleSheet.create({
   gridContainer: {
     flex: 1,
     paddingHorizontal: DIMENSIONS.PADDING,
+    paddingVertical: 8,
     flexDirection: "row",
   },
 });
