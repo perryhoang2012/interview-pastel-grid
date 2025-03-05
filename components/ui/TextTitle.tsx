@@ -1,6 +1,6 @@
 import { APP_NAME } from "@/constants";
 import generateColorForText from "@/utils/generateColorForText";
-import React, { useMemo } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 /**
@@ -10,7 +10,7 @@ import { StyleSheet, Text, View } from "react-native";
  * @returns {JSX.Element} The rendered text.
  */
 const TextTitle = (): JSX.Element => {
-  const titleColors = useMemo(() => generateColorForText(APP_NAME), [APP_NAME]);
+  const titleColors = generateColorForText(APP_NAME);
 
   return (
     <View style={styles.container}>
