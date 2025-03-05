@@ -38,7 +38,43 @@ npm install
 
 ## ▶️ Run the Application
 
-### Run with prebuild (iOS & Android folders required)
+### 1. Run on a device or emulator
+
+```sh
+yarn start
+```
+
+or
+
+```sh
+npm start
+```
+
+### 2. Run on a device or emulator (iOS)
+
+```sh
+yarn ios
+```
+
+or
+
+```sh
+npm run ios
+```
+
+### 3. Run on a device or emulator (Android)
+
+```
+yarn android
+```
+
+or
+
+```
+npm run android
+```
+
+### 4. Run with prebuild (iOS & Android folders required)
 
 If you want to run the application in prebuild mode with native iOS and Android folders, switch to the appropriate branch:
 
@@ -52,31 +88,9 @@ Then, install dependencies and run:
 expo prebuild
 ```
 
-### Run on a device or emulator ios
+⚠️ Note: Running with prebuild will take longer and consume more time during the first run.
 
-```sh
-yarn ios
-```
-
-or
-
-```sh
-npm run ios
-```
-
-### Run on a device or emulator android
-
-```
-yarn android
-```
-
-or
-
-```
-npm run android
-```
-
-Then, scan the QR code using Expo Go (iOS/Android) or choose to run on an emulator.
+#### Then, scan the QR code using Expo Go (iOS/Android) or choose to run on an emulator.
 
 ## 🛠 Key Features
 
