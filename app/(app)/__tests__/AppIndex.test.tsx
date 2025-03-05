@@ -2,6 +2,10 @@ import { fireEvent, render } from "@testing-library/react-native";
 import React from "react";
 import AppIndex from "..";
 
+jest.mock("@expo/vector-icons", () => ({
+  Ionicons: () => "IoniconsMock",
+}));
+
 describe("AppIndex Screen", () => {
   it("renders correctly", () => {
     const { getByText } = render(<AppIndex />);
