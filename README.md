@@ -110,6 +110,8 @@ During development, we encountered several challenges when searching for a flexi
 
 **Implemented a function to generate a random color palette dynamically**.
 
+**Calculating item sizes for different screen types to ensure a consistent and responsive layout across devices.**
+
 ## 📝 Notes
 
 - Make sure you have **Expo Go** installed on your mobile device to run the app.
