@@ -9,7 +9,6 @@ Interview Pastel Grid is an application developed using Expo and React Native, s
 - **React**: 18.3.1
 - **TypeScript**
 - **react-native-drag-sort**: 2.4.4
-- **tinycolor2**: 1.6.0
 - **@testing-library/react-native**: 13.1.0
 
 ## 📦 Installation
@@ -82,7 +81,7 @@ Then, scan the QR code using Expo Go (iOS/Android) or choose to run on an emulat
 ## 🛠 Key Features
 
 - Drag and drop elements in a grid using **react-native-drag-sort**
-- Customize colors with **tinycolor2**
+- Implemented a function to **generate random color palettes**
 - Write tests using **@testing-library/react-native**
 
 ## 🧪 Run Tests
