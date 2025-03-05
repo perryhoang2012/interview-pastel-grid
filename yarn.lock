@@ -5969,13 +5969,6 @@ react-native-drag-sort@^2.4.4:
   resolved "https://registry.yarnpkg.com/react-native-drag-sort/-/react-native-drag-sort-2.4.4.tgz#7c7aeea8729423a920b8db5900ea3c704ee1ff29"
   integrity sha512-MixkgMzybt8tn9m850YK5VOSlicytV41mOp/b1gAE7cK94bou27ApvVJH9oCM61vY5EN6g9VT5PwLOahbYc+BQ==
 
-react-native-draggable-gridview@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/react-native-draggable-gridview/-/react-native-draggable-gridview-1.0.3.tgz"
-  integrity sha512-zfnSDJxjbgHNxBndqf0n6N4S5aztxBMETuxh5qqtQnkp7GX/47yjCJmggPDxkMltJkptQR5dpNgD6/m8AU/TQg==
-  dependencies:
-    lodash "^4.17.19"
-
 react-native-gesture-handler@^2.23.1:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.24.0.tgz#b6e1f13ec9bf8dfa5f4911854b6e0d73d882a81a"
