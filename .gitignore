@@ -37,6 +37,9 @@ yarn-error.*
 
 app-example
 
+#unit testing
+coverage
+
 # CocoaPods
 /ios/Pods/
 
