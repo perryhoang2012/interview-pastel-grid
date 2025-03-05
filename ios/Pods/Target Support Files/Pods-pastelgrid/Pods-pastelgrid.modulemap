@@ -1,0 +1,6 @@
+module Pods_pastelgrid {
+  umbrella header "Pods-pastelgrid-umbrella.h"
+
+  export *
+  module * { export * }
+}
