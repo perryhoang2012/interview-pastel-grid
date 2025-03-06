@@ -1,4 +1,4 @@
-import { DIMENSIONS } from "@/constants";
+import { BORDER_RADIUS } from "@/constants";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -33,6 +33,6 @@ export default GridItem;
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: DIMENSIONS.BORDER_RADIUS,
+    borderRadius: BORDER_RADIUS,
   },
 });

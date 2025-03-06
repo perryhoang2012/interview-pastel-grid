@@ -1,4 +1,4 @@
-import { DIMENSIONS } from "@/constants";
+import { PADDING } from "@/constants";
 
 /**
  * Calculate the size of a grid item given the parent width, number of items in the grid, and the gap size between items.
@@ -15,7 +15,7 @@ import { DIMENSIONS } from "@/constants";
   const totalGap = numItems * 2 * gapSize;
 
   // Determine the available width for grid items after accounting for padding and gaps
-  const availableWidth = parentWidth - DIMENSIONS.PADDING * 2 - totalGap;
+  const availableWidth = parentWidth - PADDING * 2 - totalGap;
 
   // Calculate and return the size of each grid item
   return availableWidth / numItems;
