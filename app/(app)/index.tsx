@@ -2,7 +2,7 @@ import ColorPicker from "@/components/ui/ColorPicker";
 import GridItem from "@/components/ui/GridItem";
 import Input from "@/components/ui/Input";
 import TextTitle from "@/components/ui/TextTitle";
-import { DIMENSIONS } from "@/constants";
+import { BORDER_RADIUS, PADDING, STATUS_BAR_HEIGHT } from "@/constants";
 import { pastelColorOptions, ThemeColors } from "@/constants/Colors";
 import generatePastelColors from "@/utils/generatePastelColors";
 import getGridItemSize from "@/utils/gridUtils";
@@ -61,6 +61,7 @@ const AppIndex = () => {
         onDataChange={(data: string[]) => {
           setColors(data);
         }}
+        delayLongPress={60}
       />
     );
   };
@@ -119,6 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    paddingTop: STATUS_BAR_HEIGHT,
   },
   inputContainer: {
     flexDirection: "row",
@@ -129,11 +131,10 @@ const styles = StyleSheet.create({
   resetContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 8,
   },
   resetButton: {
     backgroundColor: "white",
-    borderRadius: DIMENSIONS.BORDER_RADIUS,
+    borderRadius: BORDER_RADIUS,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderColor: ThemeColors.borderGray,
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
 
   gridContainer: {
     flex: 1,
-    paddingHorizontal: DIMENSIONS.PADDING,
+    paddingHorizontal: PADDING,
     paddingVertical: 8,
     flexDirection: "row",
   },

@@ -1,4 +1,4 @@
-import { DIMENSIONS, ThemeColors } from "@/constants";
+import { BORDER_RADIUS, ThemeColors } from "@/constants";
 import React from "react";
 import {
   KeyboardTypeOptions,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: ThemeColors.borderGray,
-    borderRadius: DIMENSIONS.BORDER_RADIUS,
+    borderRadius: BORDER_RADIUS,
     padding: 8,
   },
 });

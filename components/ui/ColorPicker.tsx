@@ -1,4 +1,4 @@
-import { DIMENSIONS, pastelColorOptions, ThemeColors } from "@/constants";
+import { BORDER_RADIUS, pastelColorOptions, ThemeColors } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {
@@ -40,7 +40,11 @@ const ColorPicker = ({ selectedColor, setSelectedColor }: Props) => {
   return (
     <View style={styles.colorPickerContainer}>
       <Text style={styles.label}>Color Picker</Text>
-      <ScrollView horizontal style={styles.colorPicker}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        style={styles.colorPicker}
+      >
         {pastelColorOptions.map(renderColorOption)}
       </ScrollView>
     </View>
@@ -64,12 +68,12 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   colorButton: {
-    borderRadius: DIMENSIONS.BORDER_RADIUS,
+    borderRadius: BORDER_RADIUS,
     paddingVertical: 16,
     marginRight: 6,
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 130,
+    minWidth: 130,
     alignItems: "center",
     paddingHorizontal: 8,
   },
@@ -78,6 +82,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   viewEmpty: {
-    width: 16,
+    width: 18,
   },
 });
