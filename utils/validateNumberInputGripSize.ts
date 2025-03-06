@@ -8,10 +8,10 @@
 export function validateNumberInputGripSize(
   inputText: string,
   maxValue: number = 10
-): number {
-  if (parseInt(inputText) < 1) return 0;
+): number | string {
+  if (parseInt(inputText) < 1) return "";
   const numericValue = Number(inputText.replace(/[^0-9]/g, ""));
-  if (isNaN(numericValue) || numericValue <= 0) return 0;
-  if (numericValue > maxValue) return maxValue;
+  if (isNaN(numericValue) || numericValue <= 0) return "";
+  // if (numericValue > maxValue) return maxValue;
   return numericValue;
 }
