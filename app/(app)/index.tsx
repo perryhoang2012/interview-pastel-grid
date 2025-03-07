@@ -1,14 +1,13 @@
 import ColorPicker from "@/components/ui/ColorPicker";
-import GridItem from "@/components/ui/GridItem";
 import Input from "@/components/ui/Input";
 import TextTitle from "@/components/ui/TextTitle";
 import { BORDER_RADIUS, PADDING, STATUS_BAR_HEIGHT } from "@/constants";
 import { pastelColorOptions, ThemeColors } from "@/constants/Colors";
 import generatePastelColors from "@/utils/generatePastelColors";
-import getGridItemSize from "@/utils/gridUtils";
 import { validateNumberInputGripGap } from "@/utils/validateNumberInputGripGap";
 import { validateNumberInputGripSize } from "@/utils/validateNumberInputGripSize";
-import React, { useEffect, useState } from "react";
+import { debounce } from "lodash";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,19 +15,25 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { AutoDragSortableView } from "react-native-drag-sort";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Animated, { useAnimatedRef } from "react-native-reanimated";
+import Grid from "./Grid";
 const AppIndex = () => {
-  const [gridSize, setGridSize] = useState<number>(0);
-  const [gridGap, setGridGap] = useState<number>(0);
+  const [gridSize, setGridSize] = useState<number | string>("");
+  const [gridGap, setGridGap] = useState<number | string>("");
+
   const [selectedColor, setSelectedColor] = useState<ColorSelect>(
     pastelColorOptions[0]
   );
-  const [colors, setColors] = useState<string[]>([]);
+
+  const [inputText, setInputText] = useState("");
   const [widthGridView, setWidthGridView] = useState<number>(0);
 
-  useEffect(() => {
-    setColors(generatePastelColors(selectedColor.color, gridSize * gridSize));
+  const colors = useMemo(() => {
+    return generatePastelColors(
+      selectedColor.color,
+      Number(gridSize) * Number(gridSize)
+    );
   }, [selectedColor, gridSize]);
 
   /**
@@ -39,78 +44,74 @@ const AppIndex = () => {
     setGridSize(0);
   };
 
-  const _renderGrid = () => {
-    return (
-      <AutoDragSortableView
-        dataSource={colors}
-        parentWidth={widthGridView}
-        childrenWidth={getGridItemSize(widthGridView, gridSize, gridGap)}
-        childrenHeight={getGridItemSize(widthGridView, gridSize, gridGap)}
-        marginChildrenBottom={gridGap}
-        marginChildrenLeft={gridGap}
-        marginChildrenRight={gridGap}
-        marginChildrenTop={gridGap}
-        keyExtractor={(_, index) => index}
-        renderItem={(item, index) => (
-          <GridItem
-            item={item}
-            index={index}
-            itemSize={getGridItemSize(widthGridView, gridSize, gridGap)}
-          />
-        )}
-        onDataChange={(data: string[]) => {
-          setColors(data);
-        }}
-        delayLongPress={60}
-      />
-    );
-  };
+  const debouncedSetGridSize = useCallback(
+    debounce((value) => {
+      setGridSize(validateNumberInputGripSize(value));
+    }, 500),
+    []
+  );
+
+  const scrollableRef = useAnimatedRef<Animated.ScrollView>();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TextTitle />
-      <View style={styles.inputContainer}>
-        <Input
-          testId="gridSizeInput"
-          value={gridSize}
-          setValue={(text: string) =>
-            setGridSize(validateNumberInputGripSize(text, 100))
-          }
-          containerStyle={{ marginRight: 6 }}
-          label="Grid Size"
-          keyboardType="numeric"
+    <GestureHandlerRootView>
+      <SafeAreaView style={styles.container}>
+        <TextTitle />
+        <View style={styles.inputContainer}>
+          <Input
+            testId="gridSizeInput"
+            value={inputText}
+            setValue={(text: string) => {
+              setInputText(text);
+              debouncedSetGridSize(text);
+            }}
+            containerStyle={{ marginRight: 6 }}
+            label="Grid Size"
+            keyboardType="numeric"
+          />
+          <Input
+            testId="gridGapInput"
+            value={gridGap}
+            setValue={(text: string) =>
+              setGridGap(validateNumberInputGripGap(text))
+            }
+            containerStyle={{ marginLeft: 6 }}
+            label="Grid Gap"
+            keyboardType="numeric"
+          />
+        </View>
+        <ColorPicker
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
         />
-        <Input
-          testId="gridGapInput"
-          value={gridGap}
-          setValue={(text: string) =>
-            setGridGap(validateNumberInputGripGap(text))
-          }
-          containerStyle={{ marginLeft: 6 }}
-          label="Grid Gap"
-          keyboardType="numeric"
-        />
-      </View>
-      <ColorPicker
-        selectedColor={selectedColor}
-        setSelectedColor={setSelectedColor}
-      />
-      <View style={styles.resetContainer}>
-        <TouchableOpacity
-          testID="resetButton"
-          style={styles.resetButton}
-          onPress={resetGrid}
+        <View style={styles.resetContainer}>
+          <TouchableOpacity
+            testID="resetButton"
+            style={styles.resetButton}
+            onPress={resetGrid}
+          >
+            <Text style={styles.resetButtonText}>Reset</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={styles.gridContainer}
+          onLayout={(event) => setWidthGridView(event.nativeEvent.layout.width)}
         >
-          <Text style={styles.resetButtonText}>Reset</Text>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={styles.gridContainer}
-        onLayout={(event) => setWidthGridView(event.nativeEvent.layout.width)}
-      >
-        {_renderGrid()}
-      </View>
-    </SafeAreaView>
+          <Animated.ScrollView
+            ref={scrollableRef}
+            showsVerticalScrollIndicator={false}
+          >
+            <Grid
+              scrollableRef={scrollableRef}
+              gridSize={Number(gridSize)}
+              gridGap={Number(gridGap)}
+              colors={colors}
+              widthGridView={widthGridView}
+            />
+          </Animated.ScrollView>
+        </View>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 };
 
@@ -149,6 +150,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: PADDING,
     paddingVertical: 8,
-    flexDirection: "row",
+    // flexDirection: "row",
   },
 });
