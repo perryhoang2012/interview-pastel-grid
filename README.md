@@ -118,7 +118,7 @@ npm run android
 
 ## 🛠 Key Features
 
-- Drag and drop elements in a grid using **react-native-drag-sort**
+- Drag and drop elements in a grid using **react-native-sortables**
 - Implemented a function to **generate random color palettes**
 - Write tests using **@testing-library/react-native**
 

@@ -1,4 +1,5 @@
 import ColorPicker from "@/components/ui/ColorPicker";
+import GridDropAndDrag from "@/components/ui/GridDropAndDrag";
 import Input from "@/components/ui/Input";
 import TextTitle from "@/components/ui/TextTitle";
 import { BORDER_RADIUS, PADDING, STATUS_BAR_HEIGHT } from "@/constants";
@@ -15,9 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated, { useAnimatedRef } from "react-native-reanimated";
-import Grid from "./Grid";
 const AppIndex = () => {
   const [gridSize, setGridSize] = useState<number | string>("");
   const [gridGap, setGridGap] = useState<number | string>("");
@@ -42,6 +41,7 @@ const AppIndex = () => {
   const resetGrid = (): void => {
     setGridGap(0);
     setGridSize(0);
+    setInputText("");
   };
 
   const debouncedSetGridSize = useCallback(
@@ -54,64 +54,62 @@ const AppIndex = () => {
   const scrollableRef = useAnimatedRef<Animated.ScrollView>();
 
   return (
-    <GestureHandlerRootView>
-      <SafeAreaView style={styles.container}>
-        <TextTitle />
-        <View style={styles.inputContainer}>
-          <Input
-            testId="gridSizeInput"
-            value={inputText}
-            setValue={(text: string) => {
-              setInputText(text);
-              debouncedSetGridSize(text);
-            }}
-            containerStyle={{ marginRight: 6 }}
-            label="Grid Size"
-            keyboardType="numeric"
-          />
-          <Input
-            testId="gridGapInput"
-            value={gridGap}
-            setValue={(text: string) =>
-              setGridGap(validateNumberInputGripGap(text))
-            }
-            containerStyle={{ marginLeft: 6 }}
-            label="Grid Gap"
-            keyboardType="numeric"
-          />
-        </View>
-        <ColorPicker
-          selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
+    <SafeAreaView style={styles.container}>
+      <TextTitle />
+      <View style={styles.inputContainer}>
+        <Input
+          testId="gridSizeInput"
+          value={inputText}
+          setValue={(text: string) => {
+            setInputText(text);
+            debouncedSetGridSize(text);
+          }}
+          containerStyle={{ marginRight: 6 }}
+          label="Grid Size"
+          keyboardType="numeric"
         />
-        <View style={styles.resetContainer}>
-          <TouchableOpacity
-            testID="resetButton"
-            style={styles.resetButton}
-            onPress={resetGrid}
-          >
-            <Text style={styles.resetButtonText}>Reset</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={styles.gridContainer}
-          onLayout={(event) => setWidthGridView(event.nativeEvent.layout.width)}
+        <Input
+          testId="gridGapInput"
+          value={gridGap}
+          setValue={(text: string) =>
+            setGridGap(validateNumberInputGripGap(text))
+          }
+          containerStyle={{ marginLeft: 6 }}
+          label="Grid Gap"
+          keyboardType="numeric"
+        />
+      </View>
+      <ColorPicker
+        selectedColor={selectedColor}
+        setSelectedColor={setSelectedColor}
+      />
+      <View style={styles.resetContainer}>
+        <TouchableOpacity
+          testID="resetButton"
+          style={styles.resetButton}
+          onPress={resetGrid}
         >
-          <Animated.ScrollView
-            ref={scrollableRef}
-            showsVerticalScrollIndicator={false}
-          >
-            <Grid
-              scrollableRef={scrollableRef}
-              gridSize={Number(gridSize)}
-              gridGap={Number(gridGap)}
-              colors={colors}
-              widthGridView={widthGridView}
-            />
-          </Animated.ScrollView>
-        </View>
-      </SafeAreaView>
-    </GestureHandlerRootView>
+          <Text style={styles.resetButtonText}>Reset</Text>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={styles.gridContainer}
+        onLayout={(event) => setWidthGridView(event.nativeEvent.layout.width)}
+      >
+        <Animated.ScrollView
+          ref={scrollableRef}
+          showsVerticalScrollIndicator={false}
+        >
+          <GridDropAndDrag
+            scrollableRef={scrollableRef}
+            gridSize={Number(gridSize)}
+            gridGap={Number(gridGap)}
+            colors={colors}
+            widthGridView={widthGridView}
+          />
+        </Animated.ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
