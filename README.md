@@ -109,7 +109,7 @@ yarn android
 or
 
 ```
-npm run android
+yarn ios
 ```
 
 ⚠️ Note: Running with prebuild will take longer and consume more time during the first run.
