@@ -4,10 +4,12 @@ Interview Pastel Grid is an application developed using Expo and React Native, s
 
 # Demo
 
-![App Demo IPAD](demo/demo_ipad.gif)
-![App Demo Iphone](demo/demo_iphone.gif)
-![App Demo Android](demo/demo_android.gif)
-![App Demo Table Android](demo/demo_tablet_android.gif)
+<div style="white-space: nowrap;">
+  <img src="demo/demo_ipad.gif" alt="App Demo IPAD" width="250" height="250" style="display: inline-block; margin-right: 10px;" />
+  <img src="demo/demo_tablet_android.gif" alt="App Demo Table Android" width="170" height="250" style="display: inline-block; margin-right: 10px;" />
+  <img src="demo/demo_iphone.gif" alt="App Demo Iphone" width="130" height="250" style="display: inline-block; margin-right: 10px;" />
+  <img src="demo/demo_android.gif" alt="App Demo Android" width="130" height="250" style="display: inline-block;" />
+</div>
 
 ## 🚀 Technologies Used
 
