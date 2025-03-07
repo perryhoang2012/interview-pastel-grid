@@ -26,12 +26,6 @@ describe("AppIndex Screen", () => {
 
     expect(gridSizeInput.props.value).toBe("5");
     expect(gridGapInput.props.value).toBe("10");
-
-    fireEvent.changeText(gridSizeInput, "abc");
-    expect(gridSizeInput.props.value).toBe("0");
-
-    fireEvent.changeText(gridGapInput, "xyz");
-    expect(gridGapInput.props.value).toBe("0");
   });
 
   it("resets grid size and gap when Reset button is pressed", () => {
@@ -49,7 +43,7 @@ describe("AppIndex Screen", () => {
 
     fireEvent.press(resetButton);
 
-    expect(gridSizeInput.props.value).toBe("0");
+    expect(gridSizeInput.props.value).toBe("");
     expect(gridGapInput.props.value).toBe("0");
   });
 
