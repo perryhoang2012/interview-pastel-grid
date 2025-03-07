@@ -7,7 +7,7 @@
  */
 export function validateNumberInputGripSize(
   inputText: string,
-  maxValue: number = 10
+  maxValue: number = 12
 ): number | string {
   if (parseInt(inputText) < 1) return "";
   const numericValue = Number(inputText.replace(/[^0-9]/g, ""));

@@ -2,20 +2,28 @@
 
 Interview Pastel Grid is an application developed using Expo and React Native, supporting drag-and-drop elements in a grid layout.
 
+# Demo
+
+![App Demo IPAD](demo/demo_ipad.gif)
+![App Demo Iphone](demo/demo_iphone.gif)
+![App Demo Android](demo/demo_android.gif)
+![App Demo Table Android](demo/demo_tablet_android.gif)
+
 ## 🚀 Technologies Used
 
 - **React Native**: 0.76.7
 - **Expo**: 52.0.37
 - **React**: 18.3.1
 - **TypeScript**
-- **react-native-drag-sort**: 2.4.4
+- **react-native-sortables**: 1.3.2
 - **@testing-library/react-native**: 13.1.0
+- **tinycolor2**: "1.6.0"
 
 ## 📦 Installation
 
-⚠️ Note: This project requires Node.js 20 or later. Please ensure you have the correct version installed before proceeding.
+⚠️ Note: This project requires **Node.js 20** or later and **Java 17**. Please ensure you have the correct versions installed before proceeding.
 
-Make sure you have Node.js and Expo CLI installed.
+Make sure you have **Node.js** and **Expo** installed.
 
 ### 1. Clone the repository
 
@@ -88,6 +96,18 @@ Then, install dependencies and run:
 expo prebuild
 ```
 
+Finally, run the app:
+
+```
+yarn android
+```
+
+or
+
+```
+npm run android
+```
+
 ⚠️ Note: Running with prebuild will take longer and consume more time during the first run.
 
 #### Then, scan the QR code using Expo Go (iOS/Android) or choose to run on an emulator.
@@ -120,7 +140,9 @@ During development, we encountered several challenges when searching for a flexi
 
 **react-native-draggable-gridview**: Had drag-and-drop support but did **not scroll** properly and has not been actively maintained.
 
-**react-native-drag-sort**: **Worked** well, allowing smooth drag-and-drop functionality.
+**react-native-drag-sort**: **Provided smooth** drag-and-drop functionality but caused FPS to drop to 25.
+
+**react-native-sortables**: **Performed well**, maintaining smooth drag-and-drop functionality with a **minimum FPS** of 35.
 
 **Implemented a function to generate a random color palette dynamically**.
 
