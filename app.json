@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.perryhoang2012.pastelgrid"
+      "bundleIdentifier": "com.perryhoang2012.pastelgrid",
+      "requireFullScreen": true
     },
     "android": {
       "adaptiveIcon": {
